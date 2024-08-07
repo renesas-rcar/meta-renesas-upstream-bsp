@@ -1,0 +1,46 @@
+# Add overrides for selection 32 bit or 64 bit target
+OVERRIDES .= ":${TARGET_SYS}"
+
+# Support secure environment
+IMAGE_INSTALL:append = " \
+    optee-client \
+"
+
+# Renesas Basic packages
+IMAGE_INSTALL:append = " \
+    bash \
+    v4l-utils \
+    i2c-tools \
+    coreutils \
+"
+
+# Renesas Basic packages for 32bit
+BASIC_32BIT_PKGS = " \
+    lib32-coreutils \
+    lib32-libstdc++ \
+    lib32-optee-client \
+"
+
+# Installation for 32bit packages
+IMAGE_INSTALL:append = " \
+    ${@oe.utils.conditional("USE_32BIT_PKGS", "1", "${BASIC_32BIT_PKGS}", "", d)} \
+"
+
+# Qos user packages only supports 64bit.
+QOS_USER_PKGS = ""
+QOS_USER_PKGS:aarch64-poky-linux = " \
+    qosif-user-module \
+    qosif-tp-user-module \
+"
+
+# Installation for QoS packages
+IMAGE_INSTALL:append = " \
+    kernel-module-qos \
+    ${QOS_USER_PKGS} \
+"
+
+# Initscript for setting CPUFreq governor
+IMAGE_INSTALL:append = " cpufreq-initscripts"
+
+#Installation for ethtool
+IMAGE_INSTALL:append = " ethtool"
