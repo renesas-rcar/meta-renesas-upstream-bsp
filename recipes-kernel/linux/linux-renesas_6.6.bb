@@ -11,8 +11,6 @@ SRC_URI = "git://github.com/torvalds/linux.git;branch=master;protocol=https"
 SRCREV = "ffc253263a1375a65fa6c9f62a893e9767fbebfa"
 
 LINUX_VERSION ?= "6.6"
-PV = "${LINUX_VERSION}+git${SRCPV}"
-PR = "r1"
 
 # For generating defconfig
 KCONFIG_MODE = "--alldefconfig"
