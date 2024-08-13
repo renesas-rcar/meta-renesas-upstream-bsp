@@ -17,9 +17,6 @@ SERIAL_CONSOLES = "115200;ttySC0"
 
 # Configuration for kernel
 PREFERRED_PROVIDER_virtual/kernel = "linux-renesas"
-PREFERRED_VERSION_linux-renesas ?= "5.10%"
-LINUXLIBCVERSION ?= "5.10%"
-OLDEST_KERNEL = "5.10"
 
 # Add default config to build eMMC boot mode (it should enable USE_EMMC_BOOTMODE = "1" local.conf)
 USE_EMMC_BOOTMODE ?= "0"
