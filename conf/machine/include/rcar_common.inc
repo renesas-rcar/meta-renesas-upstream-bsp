@@ -1,11 +1,5 @@
 require conf/machine/include/soc-family.inc
 
-# 32BIT package install (default is disable)
-# This variables can be used only in multilib.
-USE_32BIT_PKGS ?= "0"
-USE_32BIT_WAYLAND ?= "0"
-USE_32BIT_MMP ?= "0"
-
 MACHINE_FEATURES = ""
 
 KERNEL_IMAGETYPE = "Image"

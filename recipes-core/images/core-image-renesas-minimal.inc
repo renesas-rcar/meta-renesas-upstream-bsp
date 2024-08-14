@@ -14,18 +14,6 @@ IMAGE_INSTALL:append = " \
     coreutils \
 "
 
-# Renesas Basic packages for 32bit
-BASIC_32BIT_PKGS = " \
-    lib32-coreutils \
-    lib32-libstdc++ \
-    lib32-optee-client \
-"
-
-# Installation for 32bit packages
-IMAGE_INSTALL:append = " \
-    ${@oe.utils.conditional("USE_32BIT_PKGS", "1", "${BASIC_32BIT_PKGS}", "", d)} \
-"
-
 # Qos user packages only supports 64bit.
 QOS_USER_PKGS = ""
 QOS_USER_PKGS:aarch64-poky-linux = " \
