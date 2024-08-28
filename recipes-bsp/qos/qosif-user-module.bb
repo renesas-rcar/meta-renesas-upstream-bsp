@@ -1,4 +1,4 @@
-DESCRIPTION = "QOS Interface library for R-Car Gen3"
+DESCRIPTION = "QOS Interface library for R-Car"
 
 require qosif.inc
 
@@ -11,7 +11,7 @@ QOSIF_LIB_DIR = "qos_if-module/files/qos_if"
 
 EXTRA_OEMAKE = "ARCH=${TARGET_ARCH}"
 
-includedir = "${RENESAS_DATADIR}/include"
+includedir:rcar-gen3 = "${RENESAS_DATADIR}/include"
 
 do_compile() {
     # Build shared library
@@ -43,6 +43,10 @@ PACKAGES = " \
 
 FILES:${PN} = " \
     ${libdir}/libqos.so* \
+"
+
+FILES:${PN}-dev = " \
+    ${includedir}/qos_public.h \
 "
 
 INSANE_SKIP:${PN} = "dev-so"

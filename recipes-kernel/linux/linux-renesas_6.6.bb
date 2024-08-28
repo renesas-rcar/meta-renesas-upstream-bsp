@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 require recipes-kernel/linux/linux-yocto.inc
 require include/cas-control.inc
 
-COMPATIBLE_MACHINE = "(rcar-gen3)"
+COMPATIBLE_MACHINE = "(rcar-gen3|rcar-gen4)"
 
 SRC_URI = "git://github.com/torvalds/linux.git;branch=master;protocol=https"
 SRCREV = "ffc253263a1375a65fa6c9f62a893e9767fbebfa"

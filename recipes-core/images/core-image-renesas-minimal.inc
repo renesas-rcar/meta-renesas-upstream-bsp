@@ -32,3 +32,6 @@ IMAGE_INSTALL:append = " cpufreq-initscripts"
 
 #Installation for ethtool
 IMAGE_INSTALL:append = " ethtool"
+
+# Enable package manager
+EXTRA_IMAGE_FEATURES += "package-management"

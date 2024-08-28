@@ -4,17 +4,21 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=69663ab153298557a59c67a60a743e5b"
 
 inherit python3native systemd pkgconfig
 
-COMPATIBLE_MACHINE = "(rcar-gen3)"
+COMPATIBLE_MACHINE = "(rcar-gen3|rcar-gen4)"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 DEPENDS += "util-linux"
 
-PV = "3.22.0+renesas+git${SRCPV}"
+PV:rcar-gen3 = "3.22.0+renesas+git${SRCPV}"
+PV:rcar-gen4 = "3.13.0+renesas+git${SRCPV}"
 PR = "r0"
 
 BRANCH = "master"
+
 SRC_URI = "git://github.com/OP-TEE/optee_client.git;branch=${BRANCH};protocol=https"
-SRCREV = "8533e0e6329840ee96cf81b6453f257204227e6c"
+
+SRCREV:rcar-gen3 = "8533e0e6329840ee96cf81b6453f257204227e6c"
+SRCREV:rcar-gen4 = "7c9c423d00e96bf51debd5fe10fd70dce83be5cc"
 
 SRC_URI += " \
     file://optee.service \
@@ -26,9 +30,10 @@ S = "${WORKDIR}/git"
 SYSTEMD_SERVICE:${PN} = "optee.service"
 
 # Recipe which fail to compile when enabling _FORTIFY_SOURCE=2 option
-SECURITY_CFLAGS:pn-optee-client = ""
+SECURITY_CFLAGS:pn-optee-client:rcar-gen3 = ""
 
-EXTRA_OEMAKE = "RPMB_EMU=0 PKG_CONFIG=pkg-config"
+EXTRA_OEMAKE:rcar-gen3 = "RPMB_EMU=0 PKG_CONFIG=pkg-config"
+EXTRA_OEMAKE:rcar-gen4 = "RPMB_EMU=0"
 
 do_install () {
     # Create destination directories

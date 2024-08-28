@@ -1,4 +1,4 @@
-DESCRIPTION = "QOS Interface test app for R-Car Gen3"
+DESCRIPTION = "QOS Interface test app for R-Car"
 
 require qosif.inc
 
@@ -9,7 +9,8 @@ PR = "r0"
 S = "${WORKDIR}/git"
 QOSIF_TP_DIR = "qos_if-tp-user/files/qos_if"
 
-includedir = "${RENESAS_DATADIR}/include"
+includedir:rcar-gen3 = "${RENESAS_DATADIR}/include"
+bindir:rcar-gen3 = "${RENESAS_DATADIR}/bin"
 
 do_compile() {
     cd ${S}/${QOSIF_TP_DIR}
@@ -18,10 +19,10 @@ do_compile() {
 
 do_install() {
     # Create destination directory
-    install -d ${D}${RENESAS_DATADIR}/bin/
+    install -d ${D}${bindir}
 
     # Copy user test program
-    install -m 755 ${S}/${QOSIF_TP_DIR}/qos_tp ${D}${RENESAS_DATADIR}/bin/
+    install -m 755 ${S}/${QOSIF_TP_DIR}/qos_tp ${D}${bindir}/
 }
 
 PACKAGES = " \
@@ -29,8 +30,8 @@ PACKAGES = " \
     ${PN}-dbg \
 "
 
-FILES:${PN} = "${RENESAS_DATADIR}/bin/qos_tp"
+FILES:${PN} = "${bindir}/qos_tp"
 
 FILES:${PN}-dbg = " \
-    ${RENESAS_DATADIR}/bin/.debug/* \
+    ${bindir}/.debug/* \
 "

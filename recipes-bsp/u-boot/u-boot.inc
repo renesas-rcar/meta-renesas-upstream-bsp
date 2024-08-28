@@ -1,14 +1,13 @@
 SUMMARY = "Universal Boot Loader for embedded devices"
 PROVIDES = "virtual/bootloader"
 
-inherit uboot-config uboot-extlinux-config uboot-sign deploy cml1 python3native
-
-COMPATIBLE_MACHINE = "(rcar-gen3)"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 DEPENDS += "kern-tools-native"
 
 DEPENDS += "swig-native"
+
+inherit uboot-config uboot-extlinux-config uboot-sign deploy cml1 python3native
 
 EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX} CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}" V=1'
 EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'

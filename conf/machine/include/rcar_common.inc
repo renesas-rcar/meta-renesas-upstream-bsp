@@ -3,9 +3,7 @@ require conf/machine/include/soc-family.inc
 MACHINE_FEATURES = ""
 
 KERNEL_IMAGETYPE = "Image"
-IMAGE_FSTYPES += " tar.bz2 ext4 wic.xz wic.bmap wic.xz.sha256sum"
-
-WKS_FILE ?= "rcar-singlepart-noloader.wks"
+IMAGE_FSTYPES += " tar.bz2"
 
 SERIAL_CONSOLES = "115200;ttySC0"
 
