@@ -1,0 +1,63 @@
+#!/bin/sh
+
+# Renesas Build Script
+#
+# Normally this is called as 'source meta-renesas-upstream-bsp/init-env-and-build <board> <kernel_version> <builddir>'
+#
+# This works in most shells (not dash), but not all of them pass the arguments when being sourced.
+#
+
+if [[ $BASH == *"bash"* ]]; then
+    THIS_SCRIPT=$BASH
+else
+    echo "Error: This script needs to be run in bash shell. Please run as 'source <path_to_build_script>'" >&2
+    return 1
+fi
+
+BOARD=$1
+KERNEL_VERSION=$2
+BUILDDIR=$3
+
+if [ "$BOARD" == "h3ulcb" ]; then
+    MACHINE="h3ulcb"
+elif [ "$BOARD" == "m3ulcb" ]; then
+    MACHINE="m3ulcb"
+elif [ "$BOARD" == "m3nulcb" ]; then
+    MACHINE="m3nulcb"
+elif [ "$BOARD" == "h3" ]; then
+    MACHINE="salvator-x"
+elif [ "$BOARD" == "m3" ]; then
+    MACHINE="salvator-x"
+elif [ "$BOARD" == "m3n" ]; then
+    MACHINE="salvator-x"
+elif [ "$BOARD" == "ebisu" ]; then
+    MACHINE="ebisu"
+elif [ "$BOARD" == "draak" ]; then
+    MACHINE="draak"
+elif [ "$BOARD" == "s4sk" ]; then
+    MACHINE="s4sk"
+elif [ "$BOARD" == "spider" ]; then
+    MACHINE="spider"
+else
+    echo "<board> should be one of these values: h3ulcb, m3ulcb, m3nulcb, h3, m3, m3n, ebisu, draak, s4sk, spider"
+    return 1
+fi
+
+TEMPLATECONF=$(pwd)/meta-renesas-upstream-bsp/conf/templates/$MACHINE . poky/oe-init-build-env $BUILDDIR
+
+if [ "$BOARD" == "m3" ]; then
+    sed -i 's|SOC_FAMILY = "r8a7795"|#SOC_FAMILY = "r8a7795"|g' conf/local.conf
+    sed -i 's|#SOC_FAMILY = "r8a7796"|SOC_FAMILY = "r8a7796"|g' conf/local.conf
+elif [ "$BOARD" == "m3n" ]; then
+    sed -i 's|SOC_FAMILY = "r8a7795"|#SOC_FAMILY = "r8a7795"|g' conf/local.conf
+    sed -i 's|#SOC_FAMILY = "r8a77965"|SOC_FAMILY = "r8a77965"|g' conf/local.conf
+fi
+
+if [ "$KERNEL_VERSION" == "6.1" ]; then
+    sed -i 's|PREFERRED_VERSION_linux-renesas = "6.6%"|PREFERRED_VERSION_linux-renesas = "6.1%"|g' conf/local.conf
+    sed -i 's|LINUXLIBCVERSION = "6.6%"|LINUXLIBCVERSION = "6.1%"|g' conf/local.conf
+fi
+
+sleep 1
+
+bitbake core-image-minimal
