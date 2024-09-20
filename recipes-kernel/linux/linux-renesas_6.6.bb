@@ -1,16 +1,19 @@
-DESCRIPTION = "Linux kernel for the R-Car Generation 3 based board"
-
-LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
+DESCRIPTION = "Linux kernel for the R-Car board"
 
 require recipes-kernel/linux/linux-yocto.inc
 require include/cas-control.inc
 
 COMPATIBLE_MACHINE = "(rcar-gen3|rcar-gen4)"
 
-SRC_URI = "git://github.com/torvalds/linux.git;branch=master;protocol=https"
-SRCREV = "ffc253263a1375a65fa6c9f62a893e9767fbebfa"
+LINUX_VERSION ?= "6.6.52"
+PV = "${LINUX_VERSION}+git${SRCPV}"
 
-LINUX_VERSION ?= "6.6"
+SRC_URI = "git://github.com/renesas-rcar/upstream_bsp.git;branch=renesas-bsp/v6.6.52-2024-09-20;protocol=https"
+SRCREV = "7d8660c647ee948f207363114d67b27ba7fe76f5"
+
+LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
+
+S = "${WORKDIR}/git"
 
 # For generating defconfig
 KCONFIG_MODE = "--alldefconfig"
