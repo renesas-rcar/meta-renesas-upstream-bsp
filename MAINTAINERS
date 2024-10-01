@@ -1,13 +1,13 @@
 This file contains a list of BSP maintainers for the BSPs contained in
-the meta-renesas-upstream-kernel repository.
+the meta-renesas-upstream-bsp repository.
 
 Descriptions of section entries:
 
 	M: Mail patches to: FullName <address@domain>
 	F: Files and directories with wildcard patterns.
 	   A trailing slash includes all files and subdirectory files.
-	   F:	meta-XXXXX/	all files in and below meta-XXXXX
-	   F:	meta-XXXXX/*	all files in meta-XXXXX, but not below
+	   F:	recipes-XXXXX/	all files in and below meta-XXXXX
+	   F:	recipes-XXXXX/*	all files in recipes-XXXXX, but not below
 	   One pattern per line.  Multiple F: lines acceptable.
 
 Please keep this list in alphabetical order.
@@ -15,5 +15,5 @@ Please keep this list in alphabetical order.
 Maintainers List (try to look for most precise areas first)
 
 		-----------------------------------
-Renesas ARM SoCs R-Car Generation 3
+Renesas ARM SoCs R-Car
 M: R-Car Yocto team <rcar-yocto@lm.renesas.com>
