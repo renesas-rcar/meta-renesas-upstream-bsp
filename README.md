@@ -87,7 +87,7 @@ This layer depends on:
     $ cd $WORK
     $ git clone git://git.yoctoproject.org/poky
     $ git clone git://git.openembedded.org/meta-openembedded
-    $ git clone https://rcar-env.dgn.renesas.com/gitlab/linuxbsp_yocto/meta-renesas-upstream-bsp.git
+    $ git clone https://github.com/renesas-rcar/meta-renesas-upstream-bsp.git
 ```
 
 * Switch to proper branches/commits
@@ -249,7 +249,7 @@ Images generated:
     $ cd $WORK
     $ git clone git://git.yoctoproject.org/poky
     $ git clone git://git.openembedded.org/meta-openembedded
-    $ git clone https://rcar-env.dgn.renesas.com/gitlab/linuxbsp_yocto/meta-renesas-upstream-bsp.git
+    $ git clone https://github.com/renesas-rcar/meta-renesas-upstream-bsp.git
 ```
 
 * Switch to proper branches/commits
@@ -327,7 +327,7 @@ Example:
     $ cd $WORK
     $ git clone git://git.yoctoproject.org/poky
     $ git clone git://git.openembedded.org/meta-openembedded
-    $ git clone https://rcar-env.dgn.renesas.com/gitlab/linuxbsp_yocto/meta-renesas-upstream-bsp.git
+    $ git clone https://github.com/renesas-rcar/meta-renesas-upstream-bsp.git
 ```
 
 * Switch to proper branches/commits
