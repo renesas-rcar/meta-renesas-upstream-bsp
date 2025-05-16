@@ -1,8 +1,8 @@
 require include/rcar-gen3-path-common.inc
 
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/:"
+FILESEXTRAPATHS:prepend:rcar := "${THISDIR}/${PN}/:"
 
-SRC_URI:append = " \
+SRC_URI:append:rcar = " \
     file://fstab \
 "
 

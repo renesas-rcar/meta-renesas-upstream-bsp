@@ -1,5 +1,7 @@
 require conf/machine/include/soc-family.inc
 
+SOC_FAMILY .= ":rcar"
+
 MACHINE_FEATURES = ""
 
 KERNEL_IMAGETYPE = "Image"
